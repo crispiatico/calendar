@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="content-wrapper">
+  <section class="content">
+    <div class="container">
+      <h2>prenotazioni: <strong>{{ singleevent.title }}</strong></h2>
+      <p>argomento: <strong>{{ singleevent.topic }}</strong>
+      - tipo: <strong>{{ singleevent.coursetype }}</strong>
+      - docente: <strong>{{ singleevent.teacher }}</strong><br />
+      a <strong>{{ singleevent.place }}</strong> -
+      da {{ singleevent.start|date('D d/m/Y') }} - {{ singleevent.start|date('H:i') }}
+      a {{ singleevent.end|date('D d/m/Y') }} - {{ singleevent.end|date('H:i') }}
+      </p>
+      {% if bookingsfound == 0 %}
+        <div class="callout callout-info">
+          <h4 class="text-align-center">Nessun prenotato trovato</h4>
+        </div>
+      {% else %}
+      <div class="row row-title">
+        <div class="col-lg-3 col-md-2 col-sm-2 portfolio-item">
+          Nome<br />Telefono<br />Email
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 portfolio-item">
+          Da ...<br />Arriva<br />Riparte
+        </div>
+        <div class="col-lg-2 col-md-1 col-sm-1 portfolio-item">
+          Tipo utente<br />Acconto
+        </div>
+        <div class="col-lg-3 col-md-1 col-sm-1 portfolio-item">
+          Note
+        </div>
+        <div class="col-lg-1 col-md-2 col-sm-2 portfolio-item">
+        ultimo agg.<br />da
+        </div>
+        <div class="col-lg-1 col-md-2 col-sm-2 portfolio-item">
+          Modifica<br />Cancella
+        </div>
+      </div>
+      {% for entry in booking %}
+      <div class="row row-item-active1">
+        <div class="col-lg-3 col-md-2 col-sm-2 portfolio-item">
+          <img src="{{ asset('bower_components/Ionicons/png/512/person.png') }}" width="18" height="18" alt="Prenotato" /><strong>{{ entry.name }}</strong><br />
+          <img src="{{ asset('bower_components/Ionicons/png/512/ios7-telephone.png') }}" width="18" height="18" alt="Telefono" /> {{ entry.phone }}<br />
+          {% if entry.email %}
+          <img src="{{ asset('bower_components/Ionicons/png/512/email.png') }}" width="18" height="18" alt="Email" />{{ entry.email }}
+          {% endif %}
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 portfolio-item">
+          {% if entry.comefrom %}
+          <img src="{{ asset('bower_components/Ionicons/png/512/home.png') }}" width="18" height="18" alt="Arriva da" /><strong>{{ entry.comefrom }}</strong><br />
+          {% endif %}
+          {% if entry.arrivale %}
+          <img src="{{ asset('bower_components/Ionicons/png/512/log-in.png') }}" width="18" height="18" alt="Arriva il" />{{ entry.arrivale|date('d/m/Y H:i') }}<br />
+          {% endif %}
+          {% if entry.departure %}
+          <img src="{{ asset('bower_components/Ionicons/png/512/log-out.png') }}" width="18" height="18" alt="Riparte il" />{{ entry.departure|date('d/m/Y H:i') }}<br />
+          {% endif %}
+        </div>
+        <div class="col-lg-2 col-md-1 col-sm-1 portfolio-item">
+          {% if entry.deposit %}
+          <img src="{{ asset('bower_components/Ionicons/png/512/android-social.png') }}" width="18" height="18" alt="Acconto" /> {{ entry.usertype }}<br />
+          {% endif %}
+          {% if entry.deposit %}
+          <img src="{{ asset('bower_components/Ionicons/png/512/cash.png') }}" width="18" height="18" alt="Acconto" /> {{ entry.deposit }} €
+          {% endif %}
+        </div>
+        <div class="col-lg-3 col-md-1 col-sm-1 portfolio-item">
+          {{ entry.note }}
+        </div>
+        <div class="col-lg-1 col-md-21 col-sm-2 portfolio-item">
+          {{ entry.created|date('d/m/Y') }}<br />
+          {{ entry.created|date('H:i:s') }}<br />
+          {{ entry.admin }}
+        </div>
+        <div class="col-lg-1 col-md-2 col-sm-2 portfolio-item">
+          <a href="modify/{{ entry.id }}">Modifica</a><br />
+          <a href="remove/{{ entry.id }}" class="confirmation">cancella</a>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+      <a href="new/{{ singleevent.id }}">
+      <img src="{{ asset('bower_components/Ionicons/png/512/android-add.png') }}" width="20" height="20" alt="Nuovo" />
+      <strong>Nuovo Prenotato</strong></a>
+      <a href="print/{{ singleevent.id }}" target="_blank">
+      {% if bookingsfound != 0 %}
+      <img src="{{ asset('bower_components/Ionicons/png/512/printer.png') }}" width="20" height="20" alt="Stampa" />
+      <strong>Versione Stampabile</strong></a>
+      {% endif %}
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

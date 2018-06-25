@@ -1,0 +1,197 @@
+mail:
+    path: /mail
+    controller: App\Controller\MailController::welcomeuser
+printcalendar:
+    path: /print
+    controller: App\Controller\CalendarController::printcalendar
+calendario:
+    path: /
+    controller: App\Controller\CalendarController::index
+iframecalendar:
+    path: /i/{header}/{topic1}/{topic2}/{place1}/{place2}/{teacher}/{weight}/{type}
+    controller: App\Controller\CalendarController::index
+    defaults:
+        header: 1
+        topic1: ""
+        topic2: ""
+        place1: ""
+        place2: ""
+        teacher: ""
+        weight: ""
+        type: ""
+    requirements:
+        header: '\d+'
+admin:
+    path: /admin/
+    controller: App\Controller\AdminController::index
+eventall:
+    path: /admin/event/
+    controller: App\Controller\AdminController::allevent
+eventmodify:
+    path: /admin/event/modify/{idedit}
+    controller: App\Controller\AdminController::eventmodify
+    requirements:
+        id: '\d+'
+eventedit:
+    path: /admin/event/edit/{idedit}
+    controller: App\Controller\AdminController::eventedit
+    requirements:
+        id: '\d+'
+eventremove:
+    path: admin/event/remove/{id}
+    controller: App\Controller\AdminController::removeevent
+    requirements:
+        id: '\d+'
+event:
+    path: /admin/event/new
+    controller: App\Controller\AdminController::eventnew
+
+topicall:
+    path: /admin/topic/
+    controller: App\Controller\AdminController::alltopic
+topic:
+    path: /admin/topic/new
+    controller: App\Controller\AdminController::topic
+topicedit:
+    path: /admin/topic/edit
+    controller: App\Controller\AdminController::topicedit
+topicmodify:
+    path: /admin/topic/modify/{id}
+    controller: App\Controller\AdminController::topicmodify
+    requirements:
+        id: '\d+'
+topicremove:
+    path: admin/topic/remove/{id}
+    controller: App\Controller\AdminController::topicremove
+    requirements:
+        id: '\d+'
+teacher:
+    path: /admin/teacher/new
+    controller: App\Controller\AdminController::teacher
+teacheredit:
+    path: /admin/teacher/edit
+    controller: App\Controller\AdminController::teacheredit
+teachermodify:
+    path: /admin/teacher/modify/{id}
+    controller: App\Controller\AdminController::teachermodify
+    requirements:
+        id: '\d+'
+teacherremove:
+    path: admin/teacher/remove/{id}
+    controller: App\Controller\AdminController::removeteacher
+    requirements:
+        id: '\d+'
+teacherall:
+    path: /admin/teacher
+    controller: App\Controller\AdminController::allteacher
+
+typeall:
+    path: /admin/type
+    controller: App\Controller\AdminController::alltype
+type:
+    path: /admin/type/new
+    controller: App\Controller\AdminController::type
+typeedit:
+    path: /admin/type/edit
+    controller: App\Controller\AdminController::typeedit
+typemodify:
+    path: /admin/type/modify/{id}
+    controller: App\Controller\AdminController::typemodify
+    requirements:
+        id: '\d+'
+typeremove:
+    path: admin/type/remove/{id}
+    controller: App\Controller\AdminController::removetype
+    requirements:
+        id: '\d+'
+placeall:
+    path: /admin/place
+    controller: App\Controller\AdminController::allplace
+place:
+    path: /admin/place/new
+    controller: App\Controller\AdminController::place
+placeedit:
+    path: /admin/place/edit
+    controller: App\Controller\AdminController::placeedit
+placemodify:
+    path: /admin/place/modify/{id}
+    controller: App\Controller\AdminController::placemodify
+    requirements:
+        id: '\d+'
+placeremove:
+    path: admin/place/remove/{id}
+    controller: App\Controller\AdminController::removeplace
+    requirements:
+        id: '\d+'
+userall:
+    path: /admin/user
+    controller: App\Controller\AdminController::alluser
+userprofile:
+    path: /admin/user/profile/{usermodifyed}
+    controller: App\Controller\AdminController::userprofile
+    defaults:
+        usermodifyed: 0
+usermodifyed:
+    path: /admin/user/profile/1
+    controller: App\Controller\AdminController::userprofile
+    defaults:
+        usermodifyed: 1
+user:
+    path: /admin/user/new
+    controller: App\Controller\AdminController::user
+useredit:
+    path: /admin/useredit
+    controller: App\Controller\AdminController::useredit
+usermodify:
+    path: /admin/user/modify/{id}
+    controller: App\Controller\AdminController::usermodify
+    requirements:
+        id: '\d+'
+userremove:
+    path: admin/user/remove/{id}
+    controller: App\Controller\AdminController::removeuser
+    requirements:
+        id: '\d+'
+usertypeall:
+    path: /admin/usertype
+    controller: App\Controller\AdminController::allusertype
+usertypemodify:
+    path: /admin/usertype/modify/{id}
+    controller: App\Controller\AdminController::usertypemodify
+    requirements:
+        id: '\d+'
+usertype:
+    path: /admin/usertype/new
+    controller: App\Controller\AdminController::usertype
+viewusertype:
+    path: /admin/viewusertype/
+    controller: App\Controller\AdminController::viewusertype
+editusertype:
+    path: /admin/editusertype/{id}
+    controller: App\Controller\AdminController::editusertype
+    requirements:
+        id: '\d+'
+removeusertype:
+    path: /admin/usertype/remove/{id}
+    controller: App\Controller\AdminController::removeusertype
+    requirements:
+        id: '\d+'
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+recoverpassword:
+    path: /recoverpassword
+    controller: App\Controller\AdminController::recoverpassword
+recoverpasswordurl:
+    path: /recoverpassword/{keyurl}
+    controller: App\Controller\AdminController::changepassword
+logout:
+    path: /logout
+booking:
+    path: admin/event/booking/{id}
+    controller: App\Controller\AdminController::bookingall
+    requirements:
+        id: '\d+'
+icone:
+    path: /admin/icone
+    controller: App\Controller\AdminController::icone

@@ -1,0 +1,20 @@
+{% extends 'baseprint.html.twig' %}
+{% block body %}
+<div id="calendario">
+<table width="100%" border="0" class="text-align-left" cellpadding="5" cellspacing="0">
+{% for entry in event %}
+  <tr>
+    <td width="60%">
+      <strong>{{ entry.title }}</strong><br>
+      da {{ entry.start|date('D d/m/Y') }} ore {{ entry.start|date('H:i') }}
+      a {{ entry.end|date('D d/m/Y') }} ore {{ entry.start|date('H:i') }}
+    </td>
+    <td width="40%">
+      con <strong>{{ entry.teacher }}</strong><br />
+      {{ entry.placename }} - {{ entry.place }}
+    </td>
+  </tr>
+{% endfor %}
+</table>
+</div>
+{% endblock %}

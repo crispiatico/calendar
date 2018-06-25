@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="content-wrapper">
+  <section class="content">
+    <div class="container">
+      <h3>Modifica profilo utente <strong>{{ userprofile }}</strong></h3>
+      {% if usermodifyed == 1 %}
+      <div class="callout callout-info">
+        <h4>Modifiche effettuate</h4>
+      </div>
+      {% endif %}
+      <div class="row"  style = 'background-color: #fff'>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

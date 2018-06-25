@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="content-wrapper">
+  <section class="content">
+    <div class="container">
+      <h2>Gestione eventi</h2>
+      <div id="calendar-form">
+        <div class="text-align-center">
+          {{ form_start(form) }}
+          {{ form_widget(form) }}
+          {{ form_end(form) }}
+        </div>
+      </div>
+        <a href="new">
+        <img src="{{ asset('bower_components/Ionicons/png/512/android-add.png') }}" width="20" height="20" alt="Nuovo" />
+        <strong>Nuovo evento</strong></a>
+        <div class="row row-title">
+            <div class="col-lg-1 col-md-1 col-sm-1 portfolio-item">
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 portfolio-item">
+              Data
+            </div>
+            <div class="col-lg-4 col-md-2 col-sm-2 portfolio-item">
+              Titolo
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 portfolio-item">
+              Maestro / Luogo
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 portfolio-item">
+              prenotati
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 portfolio-item">
+              Peso<br />
+              visibile
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 portfolio-item">
+              Azioni
+            </div>
+          </div>
+        {% for entry in event %}
+        <div class="row row-item-active{{ entry.active }}">
+          <div class="col-lg-1 col-md-1 col-sm-1 portfolio-item">
+            <img src="{{ asset('files/immagini/') }}{{ entry.gallery }}"  width="60" height="60" alt="" />
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 portfolio-item">
+            <em>da</em> {{ entry.start|date('D d/m/Y') }} - {{ entry.start|date('H:i') }}<br />
+            <em>a</em> {{ entry.end|date('D d/m/Y') }} - {{ entry.end|date('H:i') }}
+          </div>
+          <div class="col-lg-4 col-md-2 col-sm-2 portfolio-item">
+            <strong>{{ entry.title }}</strong><br />
+            {{ entry.topic }}<br />
+            <em>{{ entry.coursetype }}</em>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 portfolio-item">
+            <strong>{{ entry.teacher }}</strong><br />
+            {{ entry.placename }} <br />
+            <i>{{ entry.place }}</i>
+          </div>
+          <div class="col-lg-1 col-md-1 col-sm-1 portfolio-item">
+            n° <strong>{{ entry.booking}}</strong><br />
+            <a href="booking/{{ entry.id }}">modifica</a>
+          </div>
+          <div class="col-lg-1 col-md-1 col-sm-1 portfolio-item">
+            {{ entry.weight }}<br />
+            <img src="{{ asset('bower_components/Ionicons/png/512/') }}active{{ entry.active }}.png"  width="20" height="20" alt="Attivo" />
+          </div>
+          <div class="col-lg-1 col-md-1 col-sm-1 portfolio-item">
+            <a href="modify/{{ entry.id }}">modifica</a><br />
+            <a href="duplicate/{{ entry.id }}">duplica</a><br />
+            {% if entry.delete == 1 %}
+            <a href="remove/{{ entry.id }}" class="confirmation">cancella</a>
+            {% else %}
+            <del>cancella</del><img src="{{ asset('bower_components/Ionicons/png/512/ios7-information.png') }}" width="16" height="16" title="pre cancellare occorre prima rimuovere i prenotati" />
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+      <a href="new">
+      <img src="{{ asset('bower_components/Ionicons/png/512/android-add.png') }}" width="20" height="20" alt="Nuovo" />
+      <strong>Nuovo evento</strong></a>
+    </div>
+  </section>
+</div>
+{% endblock %}

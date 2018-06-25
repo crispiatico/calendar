@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}La Citt&agrave; della Luce - Calendario dei corsi e seminari{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('dist/css/front.css') }}">
+        {% endblock %}
+        <link rel="shortcut icon" href="{{ asset('files/immagini/favicon.ico') }}" />
+    </head>
+    <body>
+      <div class="text-align-center">
+        <p id="logo"><a href="http://www.lacittadellaluce.org">
+          <img src="http://lacittadellaluce.org/sites/default/files/la-citta-della-luce-150.png" alt="La Citt&agrave; della Luce" width="500" height="50" border="0"></a><br />
+        </p>
+        <p>Via Porcozzone 17 - Fraz. Passo Ripe - 60012 Trecastelli (AN) - tel +39.071.7959090 - fax +39.071.2509981
+  www.reiki.it - www.lacittadellaluce.org - segreteria@reiki.it - P. Iva 13132970156 - C.F. 93018410154</p>
+      </div>
+      <h2 class="text-align-center">Calendario dei corsi e seminari</h2>
+      {% block navbar %}
+      {% endblock %}
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+        {% endblock %}
+    </body>
+</html>
